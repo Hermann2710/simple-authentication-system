@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 import cors from "cors"
 import authRoutes from "./routes/auth-routes"
+import protectedRoute from "./routes/protected-route"
 
 dotenv.config()
 
@@ -14,6 +15,7 @@ app.use(express.json())
 
 // Routes
 app.use("/api/auth", authRoutes)
+app.use("/api", protectedRoute)
 
 const PORT = process.env.PORT || 5000
 
