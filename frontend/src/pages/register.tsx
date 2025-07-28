@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import api from "../services/api"
 
 export default function Register() {
@@ -19,10 +19,15 @@ export default function Register() {
     }
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Inscription</h2>
-      <div>
-        <label htmlFor='username'>Nom d'utilisateur</label>
+    <form
+      className='max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded space-y-4'
+      onSubmit={handleSubmit}
+    >
+      <h2 className='text-2xl font-semibold text-center'>Inscription</h2>
+      <div className='space-y-1'>
+        <label className='font-medium' htmlFor='username'>
+          Nom d'utilisateur
+        </label>
         <input
           type='text'
           name='username'
@@ -30,10 +35,13 @@ export default function Register() {
           placeholder='johndoe'
           value={form.username}
           onChange={(e) => setForm({ ...form, username: e.target.value })}
+          className='w-full border border-gray-300 py-2 rounded px-2'
         />
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div className='space-y-1'>
+        <label className='font-medium' htmlFor='email'>
+          Email
+        </label>
         <input
           type='email'
           name='email'
@@ -41,10 +49,13 @@ export default function Register() {
           placeholder='johndoe@gmail.com'
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
+          className='w-full border border-gray-300 py-2 rounded px-2'
         />
       </div>
-      <div>
-        <label htmlFor='password'>Mot de passe</label>
+      <div className='space-y-1'>
+        <label className='font-medium' htmlFor='password'>
+          Mot de passe
+        </label>
         <input
           type='password'
           name='password'
@@ -52,11 +63,25 @@ export default function Register() {
           placeholder='Mot de passe'
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
+          className='w-full border border-gray-300 py-2 rounded px-2'
         />
       </div>
-      <button type='submit' title='Inscription'>
+      <button
+        className='w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition'
+        type='submit'
+        title='Inscription'
+      >
         S'inscrire
       </button>
+      <p className='text-center'>
+        Déjà inscrit ?
+        <Link
+          className='text-blue-600 hover:text-blue-700 hover:underline transition'
+          to='/login'
+        >
+          Connectez vous !
+        </Link>
+      </p>
     </form>
   )
 }
